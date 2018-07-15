@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 /* written by riliwan balogun http://www.facebook.com/riliwan.rabo*/
 .board{
-    width: 75%;
+    width: 90%;
     margin: 10px auto;
     height: 500px;
     background: #fff;
@@ -224,11 +224,11 @@ li.active span.round-tabs.five{
 }
 
 section{
-    background-color: #333;
+    background-color: #febe29;
 }
 
 #submit{
-    width: 75%;
+    width: 90%;
     margin: 10px auto;
 }
 
@@ -245,8 +245,11 @@ body > #standalone-container {
     margin-bottom: 5px;
     padding: 10px;
 }
+.fusheng pre{
+    text-align: left;
+}
 
-.fusheng span{
+.fusheng span,.fusheng li{
     color: red;
 }
 
@@ -254,8 +257,14 @@ body > #standalone-container {
     color: blue;
 }
 
-#editor{
+#standalone-container{
     background: #fff;
-    width: 75%;
+    width: 90%;
     margin: 10px auto;
 }
+
+#editor-container{
+    min-height: 120px;
+    max-height: 100%;
+}
+
