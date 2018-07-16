@@ -249,12 +249,16 @@ body > #standalone-container {
     text-align: left;
 }
 
-.fusheng span,.fusheng li{
-    color: red;
+.fusheng li{
+    color: #3e5e9a;
+}
+
+.fusheng span{
+    color: #52c2be
 }
 
 .fusheng p{
-    color: blue;
+    color: #777;
 }
 
 #standalone-container{
@@ -268,3 +272,6 @@ body > #standalone-container {
     max-height: 100%;
 }
 
+.fusheng .ql-formula span{
+    color: #777;
+}

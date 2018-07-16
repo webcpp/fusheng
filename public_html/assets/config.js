@@ -38,9 +38,12 @@ $(function () {
                     } else if (k == 'room') {
                         data.room = v;
                         ++n;
+                    } else if (k == 'time') {
+                        data.time = v;
+                        ++n;
                     }
                 }
-                if (n == 3) {
+                if (n == 4) {
                     break;
                 }
             }
@@ -51,16 +54,22 @@ $(function () {
             if (data.name.indexOf(address) == -1) {
                 p = 'left';
             } else {
-                p = 'right';
+                p = 'left';
             }
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><span>"
-                    + data.name + "</span>" + ' said:<br>' + '<p>' + (data.message) + '</p></div>');
+                    + data.name + "</span>" + ' said:<br>' + '<p>' + (data.message) + '<br/><span class="pull-right">' + data.time + '</span></p></div>');
+            msg.find("a").filter(function () {
+                return this.href.match(/\.(jpg|jpeg|png|gif)$/);
+            }).addClass('lightzoom');
+
             var cur_id = $('#myTab li.active a').attr('data-original-title');
             if (typeof data.room == 'undefined') {
                 data.room = cur_id;
             }
             var id = data.room;
             $('#' + id).append(msg);
+            $('.lightzoom').lightzoom();
+            renderMathInElement(document.body);
             $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
             $('pre code').each(function (i, block) {
                 hljs.highlightBlock(block);
@@ -80,6 +89,7 @@ $(function () {
 
                 });
             }
+
         }
 
         var ws = new ReconnectingWebSocket('ws://127.0.0.1:9999/');
@@ -88,7 +98,9 @@ $(function () {
         ws.onopen = function ()
         {
             var data = '';
-            data = data.concat("name: ").concat(address).concat("\r\n").concat("message: ").concat('connected.\r\n');
+            var now = new Date();
+            data = data.concat("name: ").concat(address).concat("\r\n").concat("message: ").concat('connected.\r\n')
+                    .concat('time: ').concat(now.toLocaleString()).concat('\r\n');
             add_msg(data);
         };
 
@@ -123,19 +135,20 @@ $(function () {
 
         $('#submit').click(function () {
 //            var str = $.trim($("#editor")[0].value).replace(filter_reg, '');
-            var str = quill.root.innerHTML;
+            var str = (quill.root.innerHTML);
             if (str.length > 204800) {
                 alert('Too long.');
             } else if (str.length > 0) {
                 var data = '';
+                var now = new Date();
                 data = data.concat("uid: 0\r\n")
                         .concat("gid: 0\r\n")
                         .concat("ufilter: \r\n")
                         .concat("gfilter: \r\n")
                         .concat("message: ").concat(str).concat("\r\n")
                         .concat("name: ").concat(address).concat("\r\n")
-                        .concat("room: ").concat($('#myTab li.active a').attr('data-original-title')).concat('\r\n');
-
+                        .concat("room: ").concat($('#myTab li.active a').attr('data-original-title')).concat('\r\n')
+                        .concat('time: ').concat(now.toLocaleString()).concat('\r\n');
                 ws.send(data);
             } else {
                 alert('error message format.');

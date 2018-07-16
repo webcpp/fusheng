@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
     <head>
-        <title>fusheng for firefox</title>
+        <title>fusheng</title>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,6 +12,7 @@
         <link href="http://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
         <link href="assets/quill/quill.snow.css" rel="stylesheet"/>
         <link href="assets/message/pomelo-toast.min.css" rel="stylesheet"/>
+        <link href="assets/lightbox/css/style.css" rel="stylesheet"/>
         <link href="assets/style.css" rel="stylesheet"/>
     </head>
     <body>
@@ -90,28 +91,28 @@
                                     <!--<textarea id="txtEditor" class="form-contro board"></textarea>--> 
                                     <div id="standalone-container">
                                         <div id="toolbar-container">
-                                            <!--                                            <span class="ql-formats">
-                                                                                            <select class="ql-font"></select>
-                                                                                            <select class="ql-size"></select>
-                                                                                        </span>-->
-                                            <!--                                            <span class="ql-formats">
-                                                                                            <button class="ql-bold"></button>
-                                                                                            <button class="ql-italic"></button>
-                                                                                            <button class="ql-underline"></button>
-                                                                                            <button class="ql-strike"></button>
-                                                                                        </span>-->
-                                            <!--                                            <span class="ql-formats">
-                                                                                            <select class="ql-color"></select>
-                                                                                            <select class="ql-background"></select>
-                                                                                        </span>-->
-                                            <!--                                            <span class="ql-formats">
-                                                                                            <button class="ql-script" value="sub"></button>
-                                                                                            <button class="ql-script" value="super"></button>
-                                                                                        </span>-->
                                             <span class="ql-formats">
-                                                <!--                                                <button class="ql-header" value="1"></button>
-                                                                                                <button class="ql-header" value="2"></button>
-                                                                                                <button class="ql-blockquote"></button>-->
+                                                <select class="ql-font"></select>
+                                                <select class="ql-size"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-bold"></button>
+                                                <button class="ql-italic"></button>
+                                                <button class="ql-underline"></button>
+                                                <button class="ql-strike"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <select class="ql-color"></select>
+                                                <select class="ql-background"></select>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-script" value="sub"></button>
+                                                <button class="ql-script" value="super"></button>
+                                            </span>
+                                            <span class="ql-formats">
+                                                <button class="ql-header" value="1"></button>
+                                                <button class="ql-header" value="2"></button>
+                                                <button class="ql-blockquote"></button>
                                                 <button class="ql-code-block"></button>
                                             </span>
                                             <span class="ql-formats">
@@ -127,12 +128,12 @@
                                             <span class="ql-formats">
                                                 <button class="ql-link"></button>
                                                 <button class="ql-image"></button>
-                                                <!--                                                <button class="ql-video"></button>
-                                                                                                <button class="ql-formula"></button>-->
+                                                <button class="ql-video"></button>
+                                                <button class="ql-formula"></button>
                                             </span>
-                                            <!--                                            <span class="ql-formats">
-                                                                                            <button class="ql-clean"></button>
-                                                                                        </span>-->
+                                            <span class="ql-formats">
+                                                <button class="ql-clean"></button>
+                                            </span>
                                         </div>
                                         <div id="editor-container"></div>
                                     </div>
@@ -150,9 +151,12 @@
         <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <script src="http://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
         <script src="http://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="assets/quill/quill.min.js"></script>
         <script src="assets/message/pomelo-toast.min.js"></script>
+        <script src="assets/lightbox/js/lightzoom.js"></script>
+        <script src="assets/js-xss/xss.min.js"></script>
         <script src="assets/reconnecting-websocket.min.js"></script>
         <script src="assets/config.js"></script>
     </body>
