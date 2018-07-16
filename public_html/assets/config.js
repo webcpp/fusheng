@@ -56,8 +56,8 @@ $(function () {
             } else {
                 p = 'left';
             }
-            var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><span>"
-                    + data.name + "</span>" + ' said:<br>' + '<p>' + (data.message) + '<br/><span class="pull-right">' + data.time + '</span></p></div>');
+            var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
+                    + data.name + "</span>" + '</p><br>' + '<p>' + (data.message) + '<br/><span class="pull-right">' + data.time + '</span></p></div>');
             msg.find("a").filter(function () {
                 return this.href.match(/\.(jpg|jpeg|png|gif)$/);
             }).addClass('lightzoom');
