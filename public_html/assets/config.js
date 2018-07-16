@@ -47,15 +47,18 @@ $(function () {
                     break;
                 }
             }
-            if (typeof data.name == 'undefined' || typeof data.message == 'undefined') {
+            if (typeof data.name == 'undefined' || typeof data.message == 'undefined' || typeof data.time == 'undefined') {
                 data.name = '无名氏';
                 data.message = str;
+                data.time = (new Date()).toLocaleString();
+                data.room = $('#myTab li.active a').attr('data-original-title');
             }
-            if (data.name.indexOf(address) == -1) {
-                p = 'left';
-            } else {
-                p = 'left';
-            }
+            var p = 'left';
+//            if (data.name.indexOf(address) == -1) {
+//                p = 'left';
+//            } else {
+//                p = 'left';
+//            }
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
                     + data.name + "</span>" + '</p><br>' + '<p>' + (data.message) + '<br/><span class="pull-right">' + data.time + '</span></p></div>');
             msg.find("a").filter(function () {
