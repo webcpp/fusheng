@@ -60,7 +60,7 @@ $(function () {
 //                p = 'left';
 //            }
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
-                    + data.name + "</span>" + '</p><br>' + '<p>' + (data.message) + '<br/><span class="pull-right">' + data.time + '</span></p></div>');
+                    + data.name + "</span>" + '</p><br><p>' + (data.message) + '</p><br/><p><span class="pull-right">' + data.time + '</span></p></div>');
             msg.find("a").filter(function () {
                 return this.href.match(/\.(jpg|jpeg|png|gif)$/);
             }).addClass('lightzoom');
@@ -95,7 +95,7 @@ $(function () {
 
         }
 
-        var ws = new ReconnectingWebSocket('ws://fusheng.hi-nginx.com:9999/');
+        var ws = new ReconnectingWebSocket('ws://127.0.0.1:9999/');
 //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
         ws.onopen = function ()
