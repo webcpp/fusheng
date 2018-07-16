@@ -92,7 +92,7 @@ $(function () {
 
         }
 
-        var ws = new ReconnectingWebSocket('ws://127.0.0.1:9999/');
+        var ws = new ReconnectingWebSocket('ws://fusheng.hi-nginx.com:9999/');
 //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
         ws.onopen = function ()
