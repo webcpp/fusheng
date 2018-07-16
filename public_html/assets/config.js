@@ -133,9 +133,10 @@ $(function () {
 
         var filter_reg = new RegExp('<([a-zA-Z])+.*/?>(.*</([a-zA-Z])+>)?', 'gi');
 
+
         $('#submit').click(function () {
 //            var str = $.trim($("#editor")[0].value).replace(filter_reg, '');
-            var str = (quill.root.innerHTML);
+            var str = filterXSS(quill.root.innerHTML);
             if (str.length > 204800) {
                 alert('Too long.');
             } else if (str.length > 0) {
