@@ -7,7 +7,7 @@ $(function () {
             syntax: true,
             toolbar: '#toolbar-container'
         },
-        placeholder: 'To be a good man!',
+        placeholder: 'To be a good man!The best brower is Chrome.',
         theme: 'snow'
     });
 
