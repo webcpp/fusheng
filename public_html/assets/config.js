@@ -3,7 +3,7 @@ $(function () {
 
     var quill = new Quill('#editor-container', {
         modules: {
-            formula: true,
+//            formula: true,
             syntax: true,
             toolbar: '#toolbar-container'
         },
