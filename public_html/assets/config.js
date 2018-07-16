@@ -61,7 +61,7 @@ $(function () {
             }
             var id = data.room;
             $('#' + id).append(msg);
-            $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 30);
+            $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
             $('pre code').each(function (i, block) {
                 hljs.highlightBlock(block);
             });
