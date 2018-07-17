@@ -12,7 +12,7 @@
 #define CONFIG_FILE             "config.json"
 
 int main(int, char**) {
-    daemon(1, 0);
+//    daemon(1, 0);
     std::string line, config_json, err;
     std::ifstream f(CONFIG_FILE);
 

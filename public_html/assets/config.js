@@ -3,7 +3,7 @@ $(function () {
 
     var quill = new Quill('#editor-container', {
         modules: {
-//            formula: true,
+            formula: true,
             syntax: true,
             toolbar: '#toolbar-container'
         },
@@ -20,64 +20,34 @@ $(function () {
         }
         var address = result.country + '/' + result.regionName + '/' + result.city + '/' + result.query + '/' + user_name;
 
-        function add_msg(str) {
-            var data = {};
-            var tmp = str.split("\r\n");
-            var n = 0;
-            for (var i = 0; i < tmp.length; ++i) {
-                var cur = tmp[i];
-                var pos = cur.indexOf(": ");
-                if (pos != -1) {
-                    var k = cur.substr(0, pos), v = cur.substr(pos + 2, cur.length - 2 - pos);
-                    if (k == 'name') {
-                        data.name = v;
-                        ++n;
-                    } else if (k == 'message') {
-                        data.message = v;
-                        ++n;
-                    } else if (k == 'room') {
-                        data.room = v;
-                        ++n;
-                    } else if (k == 'time') {
-                        data.time = v;
-                        ++n;
-                    }
-                }
-                if (n == 4) {
-                    break;
-                }
-            }
-            if (typeof data.name == 'undefined' || typeof data.message == 'undefined' || typeof data.time == 'undefined') {
-                data.name = '无名氏';
-                data.message = str;
-                data.time = (new Date()).toLocaleString();
-                data.room = $('#myTab li.active a').attr('data-original-title');
+        function add_msg(data) {
+
+            if (typeof data.name == 'undefined'
+                    || typeof data.message == 'undefined'
+                    || typeof data.time == 'undefined'
+                    || typeof data.room == 'undefined') {
+                return;
             }
             var p = 'left';
-//            if (data.name.indexOf(address) == -1) {
-//                p = 'left';
-//            } else {
-//                p = 'left';
-//            }
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
-                    + data.name + "</span>" + '</p><br><p>' + (data.message) + '</p><br/><p><span class="pull-right">' + data.time + '</span></p></div>');
+                    + decodeURIComponent(data.name) + "</span>" + '</p><br><p>' + decodeURIComponent(data.message) + '</p><br/><p><span class="pull-right">' + decodeURIComponent(data.time) + '</span></p></div>');
             msg.find("a").filter(function () {
                 return this.href.match(/\.(jpg|jpeg|png|gif)$/);
             }).addClass('lightzoom');
 
-            var cur_id = $('#myTab li.active a').attr('data-original-title');
-            if (typeof data.room == 'undefined') {
-                data.room = cur_id;
-            }
-            var id = data.room;
+
+
+            var id = decodeURIComponent(data.room);
             $('#' + id).append(msg);
             $('.lightzoom').lightzoom();
-//            renderMathInElement(document.body);
+            renderMathInElement(document.body);
             $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
             $('pre code').each(function (i, block) {
                 hljs.highlightBlock(block);
             });
-            if (cur_id !== id) {
+
+            var cur_id = $('#myTab li.active a').attr('data-original-title');
+            if (cur_id != id) {
                 toast.show({
 
                     // 'error', 'warning', 'success'
@@ -100,16 +70,18 @@ $(function () {
 
         ws.onopen = function ()
         {
-            var data = '';
-            var now = new Date();
-            data = data.concat("name: ").concat(address).concat("\r\n").concat("message: ").concat('connected.\r\n')
-                    .concat('time: ').concat(now.toLocaleString()).concat('\r\n');
+            var data = {};
+            data.name = decodeURIComponent(address);
+            data.message = decodeURIComponent('connected.');
+            data.room = decodeURIComponent($('#myTab li.active a').attr('data-original-title'));
+            data.time = decodeURIComponent((new Date()).toLocaleString());
             add_msg(data);
         };
 
         ws.onmessage = function (evt)
         {
-            add_msg(evt.data);
+//            console.log(evt.data);
+            add_msg(JSON.parse(evt.data));
 
         };
 
@@ -126,7 +98,7 @@ $(function () {
                 type: 'error',
 
                 // toast message
-                text: 'error',
+                text: 'send error',
 
                 // default: 3000
                 time: 3000 // 5 seconds
@@ -139,21 +111,22 @@ $(function () {
 
         $('#submit').click(function () {
 //            var str = $.trim($("#editor")[0].value).replace(filter_reg, '');
-            var str = filterXSS(quill.root.innerHTML);
+//            var str = filterXSS(quill.root.innerHTML);
+            var str = quill.root.innerHTML;
             if (str.length > 204800) {
                 alert('Too long.');
             } else if (str.length > 0) {
-                var data = '';
-                var now = new Date();
-                data = data.concat("uid: 0\r\n")
-                        .concat("gid: 0\r\n")
-                        .concat("ufilter: \r\n")
-                        .concat("gfilter: \r\n")
-                        .concat("message: ").concat(str).concat("\r\n")
-                        .concat("name: ").concat(address).concat("\r\n")
-                        .concat("room: ").concat($('#myTab li.active a').attr('data-original-title')).concat('\r\n')
-                        .concat('time: ').concat(now.toLocaleString()).concat('\r\n');
-                ws.send(data);
+                var data = {};
+                data.gid = 0;
+                data.uid = 0;
+                data.gfilter = [];
+                data.ufilter = [];
+                data.name = encodeURIComponent(address);
+                data.message = encodeURIComponent(str);
+                data.room = encodeURIComponent($('#myTab li.active a').attr('data-original-title'));
+                data.time = encodeURIComponent((new Date()).toLocaleString());
+
+                ws.send(JSON.stringify(data));
             } else {
                 alert('error message format.');
             }
