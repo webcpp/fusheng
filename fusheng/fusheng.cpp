@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <fstream>
 #include "mongols/lib/json11.hpp"
-#include "mongols/util.hpp"
 
 
 #define PID_FILE                "fusheng.pid"
