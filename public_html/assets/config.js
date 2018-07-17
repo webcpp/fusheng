@@ -7,8 +7,42 @@ $(function () {
             syntax: true,
             toolbar: '#toolbar-container'
         },
-        placeholder: 'To be a good man!The best brower is Chrome.',
-        theme: 'snow'
+        placeholder: 'To be a good man! The best brower is Chrome.',
+        theme: 'snow',
+    });
+    var toolbar = quill.getModule('toolbar');
+    toolbar.addHandler('image', function (e) {
+        document.getElementById('get_file').click();
+    });
+
+    $('#get_file').change(function () {
+        var upload_form = $('#upload_form');
+        var options = {
+            url: '/upload',
+            type: 'post',
+            success: function (ret) {
+                if (ret.err == 0) {
+                    var range = quill.getSelection();
+                    quill.insertEmbed(range.index, 'image', ret.upload_path);
+                } else {
+                    toast.show({
+
+                        // 'error', 'warning', 'success'
+                        // 'white', 'blue'
+                        type: 'error',
+
+                        // toast message
+                        text: 'upload error',
+
+                        // default: 3000
+                        time: 3000 // 5 seconds
+
+                    });
+                }
+            }
+        }
+        upload_form.ajaxSubmit(options);
+
     });
 
     var toast = new PomeloToast();
@@ -114,7 +148,19 @@ $(function () {
 //            var str = filterXSS(quill.root.innerHTML);
             var str = quill.root.innerHTML;
             if (str.length > 204800) {
-                alert('Too long.');
+                toast.show({
+
+                    // 'error', 'warning', 'success'
+                    // 'white', 'blue'
+                    type: 'error',
+
+                    // toast message
+                    text: 'too long.',
+
+                    // default: 3000
+                    time: 3000 // 5 seconds
+
+                });
             } else if (str.length > 0) {
                 var data = {};
                 data.gid = 0;
@@ -128,7 +174,19 @@ $(function () {
 
                 ws.send(JSON.stringify(data));
             } else {
-                alert('error message format.');
+                toast.show({
+
+                    // 'error', 'warning', 'success'
+                    // 'white', 'blue'
+                    type: 'error',
+
+                    // toast message
+                    text: 'failed message',
+
+                    // default: 3000
+                    time: 3000 // 5 seconds
+
+                });
             }
         });
     });

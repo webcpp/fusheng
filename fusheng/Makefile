@@ -52,4 +52,5 @@ install:
 	install $(PROJECT) $(INSTALL_DIR)
 	cp fusheng.service /etc/systemd/system
 	cp config.json $(INSTALL_DIR)
+	install upload.py $(INSTALL_DIR)
 
