@@ -64,8 +64,8 @@ $(function () {
             }
             var p = 'left';
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
-                    + decodeURIComponent(data.name) + "</span>" + '</p><br><p class="text-muted">' + decodeURIComponent(data.message)
-                    + '</p><br/><p><span class="pull-right">' +decodeURIComponent(data.time) + '</span></p><br/><p><span class="pull-right">'+result.query+'</span></p></div>');
+                    + (data.name) + "</span>" + '</p><br><p class="text-muted">' + (data.message)
+                    + '</p><br/><p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">' + result.query + '</span></p></div>');
             msg.find("a").filter(function () {
                 return this.href.match(/\.(jpg|jpeg|png|gif)$/);
             }).addClass('lightzoom');
@@ -73,7 +73,7 @@ $(function () {
 
 
 
-            var id = decodeURIComponent(data.room);
+            var id = (data.room);
             $('#' + id).append(msg);
             $('.lightzoom').lightzoom();
 //            renderMathInElement(document.body);
@@ -107,17 +107,17 @@ $(function () {
         ws.onopen = function ()
         {
             var data = {};
-            data.name = decodeURIComponent(address);
-            data.message = decodeURIComponent('connected.');
-            data.room = decodeURIComponent($('#myTab li.active a').attr('data-original-title'));
-            data.time = decodeURIComponent((new Date()).toLocaleString());
+            data.name = (address);
+            data.message = ('connected.');
+            data.room = ($('#myTab li.active a').attr('data-original-title'));
+            data.time = ((new Date()).toLocaleString());
             add_msg(data);
         };
 
         ws.onmessage = function (evt)
         {
 //            console.log(evt.data);
-            add_msg(JSON.parse(evt.data));
+            add_msg(JSON.parse(wtf8.decode(evt.data)));
 
         };
 
@@ -169,12 +169,12 @@ $(function () {
                 data.uid = 0;
                 data.gfilter = [];
                 data.ufilter = [];
-                data.name = encodeURIComponent(address);
-                data.message = encodeURIComponent(str);
-                data.room = encodeURIComponent($('#myTab li.active a').attr('data-original-title'));
-                data.time = encodeURIComponent((new Date()).toLocaleString());
+                data.name = (address);
+                data.message = (str);
+                data.room = ($('#myTab li.active a').attr('data-original-title'));
+                data.time = ((new Date()).toLocaleString());
 
-                ws.send(JSON.stringify(data));
+                ws.send(wtf8.encode(JSON.stringify(data)));
             } else {
                 toast.show({
 
