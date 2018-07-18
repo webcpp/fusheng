@@ -132,7 +132,7 @@ $(function () {
                 type: 'error',
 
                 // toast message
-                text: 'send error',
+                text: 'send error or too long',
 
                 // default: 3000
                 time: 3000 // 5 seconds
