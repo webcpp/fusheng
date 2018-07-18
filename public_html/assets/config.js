@@ -3,7 +3,7 @@ $(function () {
 
     var quill = new Quill('#editor-container', {
         modules: {
-            formula: true,
+//            formula: true,
             syntax: true,
             toolbar: '#toolbar-container'
         },
@@ -145,8 +145,8 @@ $(function () {
 
         $('#submit').click(function () {
 //            var str = $.trim($("#editor")[0].value).replace(filter_reg, '');
-//            var str = filterXSS(quill.root.innerHTML);
-            var str = quill.root.innerHTML;
+            var str = filterXSS(quill.root.innerHTML);
+//            var str = quill.root.innerHTML;
             if (str.length > 204800) {
                 toast.show({
 
