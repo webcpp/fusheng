@@ -74,7 +74,7 @@ $(function () {
             var id = decodeURIComponent(data.room);
             $('#' + id).append(msg);
             $('.lightzoom').lightzoom();
-            renderMathInElement(document.body);
+//            renderMathInElement(document.body);
             $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
             $('pre code').each(function (i, block) {
                 hljs.highlightBlock(block);
