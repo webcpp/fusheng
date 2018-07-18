@@ -3,8 +3,8 @@ $(function () {
 
     var quill = new Quill('#editor-container', {
         modules: {
-            formula: false,
-            syntax: false,
+//            formula: false,
+//            syntax: false,
             toolbar: '#toolbar-container'
         },
         placeholder: 'To be a good man! The best brower is Chrome.',
@@ -52,7 +52,7 @@ $(function () {
         if (user_name == null) {
             user_name = '小蝶';
         }
-        var address = result.country + '/' + result.regionName + '/' + result.city + '/' + result.query + '/' + user_name;
+        var address = result.country + '/' + result.regionName + '/' + result.city + '/' + user_name;
 
         function add_msg(data) {
 
@@ -64,10 +64,12 @@ $(function () {
             }
             var p = 'left';
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
-                    + decodeURIComponent(data.name) + "</span>" + '</p><br><p>' + decodeURIComponent(data.message) + '</p><br/><p><span class="pull-right">' + decodeURIComponent(data.time) + '</span></p></div>');
+                    + decodeURIComponent(data.name) + "</span>" + '</p><br><p class="text-muted">' + decodeURIComponent(data.message)
+                    + '</p><br/><p><span class="pull-right">' +decodeURIComponent(data.time) + '</span></p><br/><p><span class="pull-right">'+result.query+'</span></p></div>');
             msg.find("a").filter(function () {
                 return this.href.match(/\.(jpg|jpeg|png|gif)$/);
             }).addClass('lightzoom');
+            msg.find("img").addClass("img-responsive").addClass("img-rounded");
 
 
 
