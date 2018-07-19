@@ -24,6 +24,7 @@ $(function () {
                 if (ret.err == 0) {
                     var range = quill.getSelection();
                     quill.insertEmbed(range.index, 'image', ret.upload_path);
+                    $('#get_file').val('');
                 } else {
                     toast.show({
 
