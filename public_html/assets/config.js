@@ -3,8 +3,8 @@ $(function () {
 
     var quill = new Quill('#editor-container', {
         modules: {
-//            formula: false,
-//            syntax: false,
+            formula: true,
+            syntax: true,
             toolbar: '#toolbar-container'
         },
         placeholder: 'To be a good man! The best brower is Chrome.',
@@ -77,11 +77,11 @@ $(function () {
             var id = (data.room);
             $('#' + id).append(msg);
             $('.lightzoom').lightzoom();
-//            renderMathInElement(document.body);
+            renderMathInElement(document.body);
             $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
-//            $('pre code').each(function (i, block) {
-//                hljs.highlightBlock(block);
-//            });
+            $('pre code').each(function (i, block) {
+                hljs.highlightBlock(block);
+            });
 
             var cur_id = $('#myTab li.active a').attr('data-original-title');
             if (cur_id != id) {

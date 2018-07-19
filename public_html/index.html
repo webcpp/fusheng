@@ -8,8 +8,8 @@
         <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
-        <!--<link href="http://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min.css" rel="stylesheet">-->
-        <!--<link href="http://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">-->
+        <link href="http://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min.css" rel="stylesheet">
+        <link href="http://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
         <link href="assets/quill/quill.snow.css" rel="stylesheet"/>
         <link href="assets/message/pomelo-toast.min.css" rel="stylesheet"/>
         <link href="assets/lightbox/css/style.css" rel="stylesheet"/>
@@ -113,7 +113,7 @@
                                                 <button class="ql-header" value="1"></button>
                                                 <button class="ql-header" value="2"></button>
                                                 <button class="ql-blockquote"></button>
-                                                <!--<button class="ql-code-block"></button>-->
+                                                <button class="ql-code-block"></button>
                                             </span>
                                             <span class="ql-formats">
                                                 <button class="ql-list" value="ordered"></button>
@@ -128,8 +128,8 @@
                                             <span class="ql-formats">
                                                 <button class="ql-link"></button>
                                                 <button class="ql-image"></button>
-                                                <!--<button class="ql-video"></button>-->
-                                                <!--<button class="ql-formula"></button>-->
+                                                <button class="ql-video"></button>
+                                                <button class="ql-formula"></button>
                                             </span>
                                             <span class="ql-formats">
                                                 <button class="ql-clean"></button>
@@ -138,7 +138,7 @@
                                         <div id="editor-container"></div>
                                     </div>
                                     <form id='upload_form' class="hidden" action="/upload" enctype="multipart/form-data" method="post">
-                                        <input type="file" id="get_file" name='upload' />
+                                        <input type="file" id="get_file" accept="image/*" name='upload' />
                                     </form>
                                     
                                     <button id="submit" type="button" class="btn btn-primary btn-lg btn-block">submit</button>
@@ -154,9 +154,9 @@
         <!--<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>-->
         <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <!--<script src="http://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min.js"></script>-->
-        <!--<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>-->
-        <!--<script src="http://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>-->
+        <script src="http://cdn.bootcss.com/KaTeX/0.10.0-alpha/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+        <script src="http://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="assets/quill/quill.min.js"></script>
         <script src="assets/message/pomelo-toast.min.js"></script>
         <script src="assets/lightbox/js/lightzoom.js"></script>
