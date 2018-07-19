@@ -165,7 +165,7 @@ $(function () {
                     time: 3000 // 5 seconds
 
                 });
-            } else if (str.length > 0 && length > 1) {
+            } else if (str.length > 0 && length > 10) {
                 var data = {};
                 data.gid = 0;
                 data.uid = 0;
@@ -185,7 +185,7 @@ $(function () {
                     type: 'error',
 
                     // toast message
-                    text: 'empty message',
+                    text: 'too short.',
 
                     // default: 3000
                     time: 3000 // 5 seconds
