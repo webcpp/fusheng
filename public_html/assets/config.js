@@ -150,6 +150,7 @@ $(function () {
 //            var str = $.trim($("#editor")[0].value).replace(filter_reg, '');
 //            var str = filterXSS(quill.root.innerHTML);
             var str = quill.root.innerHTML;
+            var length = quill.getLength();
             if (str.length > 204800) {
                 toast.show({
 
@@ -164,7 +165,7 @@ $(function () {
                     time: 3000 // 5 seconds
 
                 });
-            } else if (str.length > 0) {
+            } else if (str.length > 0 && length > 1) {
                 var data = {};
                 data.gid = 0;
                 data.uid = 0;
@@ -184,7 +185,7 @@ $(function () {
                     type: 'error',
 
                     // toast message
-                    text: 'failed message',
+                    text: 'empty message',
 
                     // default: 3000
                     time: 3000 // 5 seconds
