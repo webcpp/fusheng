@@ -124,13 +124,26 @@ $(function () {
         ws.onmessage = function (evt)
         {
 //            console.log(evt.data);
-            add_msg(JSON.parse(wtf8.decode(evt.data)));
-
+            try {
+                add_msg(JSON.parse(wtf8.decode(evt.data)));
+            } catch (err) {
+                var data = {};
+                data.name = (address);
+                data.message = ('recv error.');
+                data.room = ($('#myTab li.active a').attr('data-original-title'));
+                data.time = ((new Date()).toLocaleString());
+                add_msg(data);
+            }
         };
 
         ws.onclose = function (evt)
         {
-
+            var data = {};
+            data.name = (address);
+            data.message = ('unconnected.');
+            data.room = ($('#myTab li.active a').attr('data-original-title'));
+            data.time = ((new Date()).toLocaleString());
+            add_msg(data);
         };
 
         ws.onerror = function (evt) {
@@ -154,7 +167,6 @@ $(function () {
 
 
         $('#submit').click(function () {
-//            var str = $.trim($("#editor")[0].value).replace(filter_reg, '');
 //            var str = filterXSS(quill.root.innerHTML);
             var str = quill.root.innerHTML;
             var length = quill.getLength();
