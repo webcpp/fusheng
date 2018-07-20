@@ -40,7 +40,13 @@ $(function () {
 
                     });
                 }
+            },
+            error: function () {
+                toast.show({
+                    type: 'error', text: 'upload error or too big.', time: 3000
+                });
             }
+
         }
         upload_form.ajaxSubmit(options);
 
