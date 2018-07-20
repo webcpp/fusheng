@@ -167,10 +167,10 @@ $(function () {
 
 
         $('#submit').click(function () {
-//            var str = filterXSS(quill.root.innerHTML);
+            //var str = filterXSS(quill.root.innerHTML);
             var str = quill.root.innerHTML;
             var length = quill.getLength();
-            if (str.length > 204800) {
+            if (str.length > 5000) {
                 toast.show({
 
                     // 'error', 'warning', 'success'
@@ -184,7 +184,7 @@ $(function () {
                     time: 3000 // 5 seconds
 
                 });
-            } else if (str.length > 0 && length > 10) {
+            } else if (str.length >= 10 && length <= 5000) {
                 var data = {};
                 data.gid = 0;
                 data.uid = 0;
