@@ -134,19 +134,20 @@ $(function () {
         };
 
         ws.onerror = function (evt) {
-            toast.show({
-
-                // 'error', 'warning', 'success'
-                // 'white', 'blue'
-                type: 'error',
-
-                // toast message
-                text: 'send error or too long',
-
-                // default: 3000
-                time: 3000 // 5 seconds
-
-            });
+            console.log(evt.data);
+//            toast.show({
+//
+//                // 'error', 'warning', 'success'
+//                // 'white', 'blue'
+//                type: 'error',
+//
+//                // toast message
+//                text: 'send error or too long',
+//
+//                // default: 3000
+//                time: 3000 // 5 seconds
+//
+//            });
         }
 
         var filter_reg = new RegExp('<([a-zA-Z])+.*/?>(.*</([a-zA-Z])+>)?', 'gi');
