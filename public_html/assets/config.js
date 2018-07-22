@@ -170,7 +170,7 @@ $(function () {
             //var str = filterXSS(quill.root.innerHTML);
             var str = quill.root.innerHTML;
             var length = quill.getLength();
-            if (str.length > 5000) {
+            if (length > 5000) {
                 toast.show({
 
                     // 'error', 'warning', 'success'
