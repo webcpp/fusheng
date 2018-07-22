@@ -178,13 +178,13 @@ $(function () {
                     type: 'error',
 
                     // toast message
-                    text: 'too long.',
+                    text: 'too long.At most 5000 words.',
 
                     // default: 3000
                     time: 3000 // 5 seconds
 
                 });
-            } else if (str.length >= 10 && length <= 5000) {
+            } else if (length >= 10 && length <= 5000) {
                 var data = {};
                 data.gid = 0;
                 data.uid = 0;
@@ -204,7 +204,7 @@ $(function () {
                     type: 'error',
 
                     // toast message
-                    text: 'too short.',
+                    text: 'too short.At least 10 words.',
 
                     // default: 3000
                     time: 3000 // 5 seconds
