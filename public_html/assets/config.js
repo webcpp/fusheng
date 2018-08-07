@@ -53,13 +53,13 @@ $(function () {
     });
 
     var toast = new PomeloToast();
-
-    $.getJSON('http://ip-api.com/json/?callback=?', function (result) {
+    var ip_query='https://geoip.nekudo.com/api';
+    $.getJSON(ip_query, function (result) {
         var user_name = prompt("请输入您的名字", "小蝶");
         if (user_name == null) {
             user_name = '小蝶';
         }
-        var address = result.country + '/' + result.regionName + '/' + result.city + '/' + user_name;
+        var address = result.country.name + '/' + result.city + '/' + user_name;
 
         function add_msg(data) {
 
@@ -72,7 +72,7 @@ $(function () {
             var p = 'left';
             var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
                     + (data.name) + "</span>" + '</p><br><p class="text-muted">' + (data.message)
-                    + '</p><br/><p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">' + result.query + '</span></p></div>');
+                    + '</p><br/><p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">' + result.ip + '</span></p></div>');
             msg.find("a").filter(function () {
                 return this.href.match(/\.(jpg|jpeg|png|gif)$/);
             }).addClass('lightzoom');
@@ -108,7 +108,7 @@ $(function () {
 
         }
 
-        var ws = new ReconnectingWebSocket('ws://127.0.0.1:9999/');
+        var ws = new ReconnectingWebSocket('wss://127.0.0.1:9999/');
 //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
         ws.onopen = function ()

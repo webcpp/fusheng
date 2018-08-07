@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 /* written by riliwan balogun http://www.facebook.com/riliwan.rabo*/
 .board{
     width: 90%;
@@ -18,7 +18,7 @@
 }
 
 .board > div.board-inner{
-    background: #fafafa url(http://subtlepatterns.com/patterns/geometry2.png);
+    background: #fafafa url(https://subtlepatterns.com/patterns/geometry2.png);
     background-size: 30%;
 }
 
