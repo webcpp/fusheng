@@ -63,11 +63,13 @@ int main(int, char**) {
 int main(int,char**)
 {
         auto f=[](const std::string& input
+					 , bool& keepalive
                 , bool& send_to_other
                 , std::pair<size_t, size_t>& g_u_id
                 , mongols::tcp_server::filter_handler_function& send_to_other_filter){
+													keepalive = KEEPALIVE_CONNECTION;
                                         send_to_other=true;
-                                        return std::make_pair(input,KEEPALIVE_CONNECTION);
+                                        return input;
                                 };
         int port=9999;
         const char* host="127.0.0.1";
