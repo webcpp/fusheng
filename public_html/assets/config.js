@@ -69,7 +69,7 @@ $(function () {
         var p = 'left';
         var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
                 + data.ip+'/'+ data.name+':'+ "</span>" + '</p><br><p class="text-muted">' + (data.message)
-                + '</p><br/><p><span class="pull-right">' + (data.time) + '</span></p><br/><p>当前在线:<span class="pull-right">' + (data.u_size) + '</span></p><br/></div>');
+                + '</p><br/><p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
         msg.find("a").filter(function () {
             return this.href.match(/\.(jpg|jpeg|png|gif)$/);
         }).addClass('lightzoom');
