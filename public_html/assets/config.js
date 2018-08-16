@@ -54,6 +54,9 @@ $(function () {
 
     var toast = new PomeloToast();
     var user_name = prompt("请输入您的名字", "小蝶");
+    if(user_name==null){
+        user_name="小蝶";
+    }
 
     function add_msg(data) {
 
