@@ -17,8 +17,8 @@ CXX=g++
 
 CFLAGS+=-O3 -std=c11 -Wall
 CXXFLAGS+=-O3 -std=c++11 -Wall
-CXXFLAGS+=`pkg-config --cflags mongols`
-LDLIBS+=`pkg-config --libs mongols`
+CXXFLAGS+=`pkg-config --cflags mongols openssl`
+LDLIBS+=`pkg-config --libs mongols openssl`
 
 ifndef INSTALL_DIR
 INSTALL_DIR=/usr/local/fusheng
