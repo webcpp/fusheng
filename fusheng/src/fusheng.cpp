@@ -49,7 +49,7 @@ int main(int, char**) {
             };
 
             mongols::multi_process main_process;
-            main_process.run(ff, g, config["worker"].int_value().);
+            main_process.run(ff, g, config["worker"].int_value());
 
 
             remove(PID_FILE);
