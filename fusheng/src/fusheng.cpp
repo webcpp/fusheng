@@ -1,10 +1,8 @@
-//#include <mongols/tcp_server.hpp>
-//#include <mongols/tcp_threading_server.hpp>
-//#include <mongols/http_server.hpp>
 #include <mongols/ws_server.hpp>
+#include <mongols/util.hpp>
+#include <mongols/lib/json11.hpp>
 #include <unistd.h>
 #include <fstream>
-#include "mongols/lib/json11.hpp"
 
 
 #define PID_FILE                "fusheng.pid"
@@ -30,12 +28,30 @@ int main(int, char**) {
             port = config["port"].int_value();
             timeout = config["timeout"].int_value();
             buffer_size = config["buffer_size"].int_value();
-            mongols::ws_server server(host, port, timeout, buffer_size);
+            mongols::ws_server server(host, port, timeout, buffer_size, std::thread::hardware_concurrency());
+            if (config["openssl"]["enable"].bool_value()) {
+                if (!server.set_openssl(config["openssl"]["crt"].string_value(), config["openssl"]["crt"].string_value())) {
+                    return -1;
+                }
+            }
             {
                 std::ofstream pid_file(PID_FILE);
                 pid_file << getpid();
             }
-            server.run();
+
+            std::function<void(pthread_mutex_t*, size_t*) > ff = [&](pthread_mutex_t* mtx, size_t * data) {
+                server.run();
+            };
+
+            std::function<bool(int) > g = [&](int status) {
+                //                std::cout << strsignal(WTERMSIG(status)) << std::endl;
+                return false;
+            };
+
+            mongols::multi_process main_process;
+            main_process.run(ff, g, config["worker"].int_value().);
+
+
             remove(PID_FILE);
         }
     }

@@ -1,13 +1,13 @@
 
 PROJECT=fusheng
-CPPSRC=$(shell find . -type f | egrep *.cpp$$)
+CPPSRC=$(shell find src -type f | egrep *.cpp$$)
 CPPOBJ=$(patsubst %.cpp,%.o,$(CPPSRC))
-CCSRC=$(shell find . -type f | egrep *.cc$$)
+CCSRC=$(shell find src -type f | egrep *.cc$$)
 CCOBJ=$(patsubst %.cc,%.o,$(CCSRC))
-CXXSRC=$(shell find . -type f | egrep *.cxx$$)
+CXXSRC=$(shell find src -type f | egrep *.cxx$$)
 CXXOBJ=$(patsubst %.cxx,%.o,$(CXXSRC))
 
-CSRC=$(shell find . -type f | egrep *.c$$)
+CSRC=$(shell find src -type f | egrep *.c$$)
 COBJ=$(patsubst %.c,%.o,$(CSRC))
 
 OBJ=$(COBJ) $(CXXOBJ) $(CCOBJ) $(CPPOBJ)
