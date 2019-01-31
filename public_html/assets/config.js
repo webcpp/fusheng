@@ -129,6 +129,7 @@ $(function () {
             time: 3000 // 5 seconds
 
         });
+        $('#submit').removeClass('btn-primary').addClass('btn-success');
     };
 
     ws.onmessage = function (evt)
@@ -163,12 +164,13 @@ $(function () {
             type: 'success',
 
             // toast message
-            text: 'unconnected',
+            text: 'diconnected',
 
             // default: 3000
             time: 3000 // 5 seconds
 
         });
+        $('#submit').removeClass('btn-success').addClass('btn-primary');
     };
 
     ws.onerror = function (evt) {
