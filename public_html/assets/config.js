@@ -164,7 +164,7 @@ $(function () {
             type: 'success',
 
             // toast message
-            text: 'diconnected',
+            text: 'disconnected',
 
             // default: 3000
             time: 3000 // 5 seconds
