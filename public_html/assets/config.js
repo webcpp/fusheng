@@ -176,7 +176,7 @@ $(function () {
     };
 
     ws.onerror = function (evt) {
-        console.log(evt.data);
+//        console.log(evt.data);
         toast.show({
 
             // 'error', 'warning', 'success'
