@@ -9,6 +9,10 @@
     ,
     "worker": 1
     ,
+    "origin": "http://localhost"
+    ,
+    "max_send_limit": 5
+    ,
     "openssl": {
         "enable": false,
         "crt": "",
