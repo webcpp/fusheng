@@ -68,8 +68,8 @@ $(function () {
         }
         var p = 'left';
         var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
-                + data.ip+'/'+ data.name+':'+ "</span>" + '</p><br><p class="text-muted">' + (data.message)
-                + '</p><br/><p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
+                + data.ip+'/'+ data.name+':'+ "</span>" + '</p><br/>' + (data.message)
+                + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
         msg.find("a").filter(function () {
             return this.href.match(/\.(jpg|jpeg|png|gif)$/);
         }).addClass('lightzoom');
@@ -82,7 +82,7 @@ $(function () {
         $('.lightzoom').lightzoom();
         renderMathInElement(document.body);
         $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
-        $('pre code').each(function (i, block) {
+        $('pre,code').each(function (i, block) {
             hljs.highlightBlock(block);
         });
 
