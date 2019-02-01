@@ -88,7 +88,7 @@
 
 				var lz      = $( '#lz-box' ),
 					img       = $(this).children('img'),
-					src       = $(this).attr('href'),
+					src       =this.href!=undefined?$(this).attr('href'):$(this).attr('src'),
 					overlayCss = {};
 
 				var title = img.attr('title');
