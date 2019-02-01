@@ -75,7 +75,7 @@ $(function () {
         msg.find("a").filter(function () {
             return this.href.match(/\.(jpg|jpeg|png|gif)$/);
         }).addClass('lightzoom');
-        msg.find("img").addClass("img-responsive").addClass("img-rounded");
+        msg.find("img").addClass("img-responsive").addClass("img-rounded").addClass('img-thumbnail').css({'height': 236, 'width': 304});
 
 
 
