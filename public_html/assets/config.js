@@ -14,6 +14,8 @@ $(function () {
     toolbar.addHandler('image', function (e) {
         document.getElementById('get_file').click();
     });
+    
+    hljs.initHighlightingOnLoad();
 
     $('#get_file').change(function () {
         var upload_form = $('#upload_form');
@@ -82,11 +84,11 @@ $(function () {
         $('.lightzoom').lightzoom();
         renderMathInElement(document.body);
         $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
-        /*$('pre,code').each(function (i, block) {
+        $('pre,code').each(function (i, block) {
          hljs.highlightBlock(block);
-         });*/
-        hljs.initHighlighting.called = false;
-        hljs.initHighlighting();
+         });
+//        hljs.initHighlighting.called = false;
+//        hljs.initHighlighting();
 
         var cur_id = $('#myTab li.active a').attr('data-original-title');
         if (cur_id != id) {
