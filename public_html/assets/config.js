@@ -98,7 +98,7 @@ $(function () {
                 text: id + '有新消息',
 
                 // default: 3000
-                time: 3000 // 5 seconds
+                time: 500 // 5 seconds
 
             });
         }
