@@ -14,7 +14,7 @@ $(function () {
     toolbar.addHandler('image', function (e) {
         document.getElementById('get_file').click();
     });
-    
+
     hljs.initHighlightingOnLoad();
 
     $('#get_file').change(function () {
@@ -69,7 +69,7 @@ $(function () {
             return;
         }
         var p = 'left';
-        var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
+        var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body text-justify'><p><span>"
                 + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + Base64.decode(data.message)
                 + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
         msg.find("a").filter(function () {
@@ -85,8 +85,9 @@ $(function () {
         renderMathInElement(document.body);
         $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
         $('pre,code').each(function (i, block) {
-         hljs.highlightBlock(block);
-         });
+            $(block).addClass('pre-scrollable')
+            hljs.highlightBlock(block);
+        });
 //        hljs.initHighlighting.called = false;
 //        hljs.initHighlighting();
 
