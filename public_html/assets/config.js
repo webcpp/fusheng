@@ -54,8 +54,8 @@ $(function () {
 
     var toast = new PomeloToast();
     var user_name = prompt("请输入您的名字", "小蝶");
-    if(user_name==null){
-        user_name="小蝶";
+    if (user_name == null) {
+        user_name = "小蝶";
     }
 
     function add_msg(data) {
@@ -68,7 +68,7 @@ $(function () {
         }
         var p = 'left';
         var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body'><p><span>"
-                + data.ip+'/'+ data.name+':'+ "</span>" + '</p><br/>' + (data.message)
+                + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + (data.message)
                 + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
         msg.find("a").filter(function () {
             return this.href.match(/\.(jpg|jpeg|png|gif)$/);
@@ -82,9 +82,11 @@ $(function () {
         $('.lightzoom').lightzoom();
         renderMathInElement(document.body);
         $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
-        $('pre,code').each(function (i, block) {
-            hljs.highlightBlock(block);
-        });
+        /*$('pre,code').each(function (i, block) {
+         hljs.highlightBlock(block);
+         });*/
+        hljs.initHighlighting.called = false;
+        hljs.initHighlighting();
 
         var cur_id = $('#myTab li.active a').attr('data-original-title');
         if (cur_id != id) {
