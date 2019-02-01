@@ -227,6 +227,7 @@ $(function () {
             data.time = ((new Date()).toLocaleString());
 
             ws.send((JSON.stringify(data)));
+            quill.setText('');
         } else {
             toast.show({
 
