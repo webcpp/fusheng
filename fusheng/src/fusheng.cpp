@@ -28,9 +28,9 @@ int main(int, char**) {
             port = config["port"].int_value();
             timeout = config["timeout"].int_value();
             buffer_size = config["buffer_size"].int_value();
-            mongols::ws_server::origin = config["origin"].string_value();
-            mongols::ws_server::max_send_limit = config["max_send_limit"].int_value();
             mongols::ws_server server(host, port, timeout, buffer_size, std::thread::hardware_concurrency());
+            server.set_origin(config["origin"].string_value());
+            server.set_max_send_limit(config["max_send_limit"].int_value());
             if (config["openssl"]["enable"].bool_value()) {
                 if (!server.set_openssl(config["openssl"]["crt"].string_value(), config["openssl"]["crt"].string_value())) {
                     return -1;
