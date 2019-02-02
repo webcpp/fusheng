@@ -29,6 +29,7 @@ int main(int, char**) {
             timeout = config["timeout"].int_value();
             buffer_size = config["buffer_size"].int_value();
             mongols::ws_server server(host, port, timeout, buffer_size, std::thread::hardware_concurrency());
+            server.set_enable_origin_check(config["enable_origin_check"].bool_value());
             server.set_origin(config["origin"].string_value());
             server.set_max_send_limit(config["max_send_limit"].int_value());
             if (config["openssl"]["enable"].bool_value()) {

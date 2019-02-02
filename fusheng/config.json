@@ -9,6 +9,8 @@
     ,
     "worker": 1
     ,
+    "enable_origin_check": true
+    ,
     "origin": "http://localhost"
     ,
     "max_send_limit": 5
