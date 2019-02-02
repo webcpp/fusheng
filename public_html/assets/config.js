@@ -73,7 +73,7 @@ $(function () {
                 + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + Base64.decode(data.message)
                 + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
 
-        msg.find("img").addClass("img-responsive").addClass("img-rounded").addClass('img-thumbnail').css({'height': 436, 'width': 304}).addClass('lightzoom');
+        msg.find("img").addClass("img-responsive").addClass("img-rounded").addClass('img-thumbnail').css({'height': 404, 'width': 304}).addClass('lightzoom');
         msg.find("a").filter(function () {
             return this.href.match(/\.(jpg|jpeg|png|gif)$/);
         }).addClass('lightzoom');
