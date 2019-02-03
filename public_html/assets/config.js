@@ -69,7 +69,7 @@ $(function () {
             return;
         }
         var p = 'left';
-        var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body text-justify'><p><span>"
+        var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body text-justify' style='word-wrap: break-word;' ><p><span>"
                 + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + Base64.decode(data.message)
                 + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
 
