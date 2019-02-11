@@ -13,6 +13,10 @@
     ,
     "origin": "http://localhost"
     ,
+    "enbale_blacklist": true
+    ,
+    "max_connection_limit": 1
+    ,
     "max_send_limit": 5
     ,
     "openssl": {
