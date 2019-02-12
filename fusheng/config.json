@@ -15,11 +15,13 @@
     ,
     "enbale_blacklist": true
     ,
-    "enable_security_check":true
-    ,
     "max_connection_limit": 1
     ,
-    "max_send_limit": 5
+    "enable_security_check": true
+    ,
+    "min_send_limit": 0
+    ,
+    "max_send_limit": 1
     ,
     "openssl": {
         "enable": false,
