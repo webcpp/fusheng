@@ -15,6 +15,8 @@
     ,
     "enbale_blacklist": true
     ,
+    "enable_security_check":true
+    ,
     "max_connection_limit": 1
     ,
     "max_send_limit": 5

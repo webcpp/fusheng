@@ -3,6 +3,7 @@
 #include <mongols/lib/json11.hpp>
 #include <unistd.h>
 #include <fstream>
+#include <thread>
 
 
 #define PID_FILE                "fusheng.pid"
@@ -28,12 +29,17 @@ int main(int, char**) {
             port = config["port"].int_value();
             timeout = config["timeout"].int_value();
             buffer_size = config["buffer_size"].int_value();
-            mongols::ws_server server(host, port, timeout, buffer_size, std::thread::hardware_concurrency());
+
             mongols::tcp_server::max_connection_limit = config["max_connection_limit"].int_value();
+            mongols::tcp_server::max_send_limit = config["max_send_limit"].int_value();
+
+
+            mongols::ws_server server(host, port, timeout, buffer_size, std::thread::hardware_concurrency());
+
             server.set_enable_blacklist(config["enable_blacklist"].bool_value());
             server.set_enable_origin_check(config["enable_origin_check"].bool_value());
             server.set_origin(config["origin"].string_value());
-            server.set_max_send_limit(config["max_send_limit"].int_value());
+            server.set_enable_security_check(config["enable_security_check"].bool_value());
 
             if (config["openssl"]["enable"].bool_value()) {
                 if (!server.set_openssl(config["openssl"]["crt"].string_value(), config["openssl"]["crt"].string_value())) {
