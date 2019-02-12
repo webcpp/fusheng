@@ -19,8 +19,6 @@
     ,
     "enable_security_check": true
     ,
-    "min_send_limit": 0
-    ,
     "max_send_limit": 1
     ,
     "openssl": {

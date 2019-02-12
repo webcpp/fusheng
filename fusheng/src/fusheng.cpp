@@ -31,7 +31,6 @@ int main(int, char**) {
             buffer_size = config["buffer_size"].int_value();
 
             mongols::tcp_server::max_connection_limit = config["max_connection_limit"].int_value();
-            mongols::tcp_server::min_send_limit = config["min_send_limit"].int_value();
             mongols::tcp_server::max_send_limit = config["max_send_limit"].int_value();
 
 
