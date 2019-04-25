@@ -60,20 +60,13 @@ $(function () {
         user_name = "小蝶";
     }
 
-    function add_msg(data) {
-
-        if (typeof data.name == 'undefined'
-                || typeof data.message == 'undefined'
-                || typeof data.time == 'undefined'
-                || typeof data.room == 'undefined') {
-            return;
-        }
+    function create_response(data) {
         var p = 'left';
         var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body text-justify' style='word-wrap: break-word;' ><p><span>"
-                + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + data.message
-                + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
+            + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + data.message
+            + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
 
-        msg.find("img").addClass("img-responsive").addClass("img-rounded").addClass('img-thumbnail').css({'height': 404, 'width': 304}).addClass('lightzoom');
+        msg.find("img").addClass("img-responsive").addClass("img-rounded").addClass('img-thumbnail').css({ 'height': 404, 'width': 304 }).addClass('lightzoom');
         msg.find("a").filter(function () {
             return this.href.match(/\.(jpg|jpeg|png|gif)$/);
         }).addClass('lightzoom');
@@ -83,13 +76,13 @@ $(function () {
         $('#' + id).append(msg);
         $('.lightzoom').lightzoom();
         renderMathInElement(document.body);
-        $('.tab-content').animate({scrollTop: $('.tab-pane').height()}, 80);
+        $('.tab-content').animate({ scrollTop: $('.tab-pane').height() }, 80);
         $('pre,code').each(function (i, block) {
             $(block).addClass('pre-scrollable')
             hljs.highlightBlock(block);
         });
-//        hljs.initHighlighting.called = false;
-//        hljs.initHighlighting();
+        //        hljs.initHighlighting.called = false;
+        //        hljs.initHighlighting();
 
         var cur_id = $('#myTab li.active a').attr('data-original-title');
         if (cur_id != id) {
@@ -107,20 +100,43 @@ $(function () {
 
             });
         }
+    }
+
+    function add_msg(data) {
+
+        if (typeof data.name == 'undefined'
+            || typeof data.message == 'undefined'
+            || typeof data.time == 'undefined'
+            || typeof data.room == 'undefined') {
+            return;
+        }
+
+        if (ip_geo == null) {
+            $.GET('https://api.ip.sb/geoip/' + data.ip, function (ret) {
+                ip_geo = ret.country + ret.region + ret.city;
+                data.ip = ip_geo;
+                create_response(data)
+            }).fail(function () {
+                create_response(data)
+            })
+        } else {
+            data.ip = ip_geo;
+            create_response(data)
+        }
+
 
     }
 
     var ws = new ReconnectingWebSocket('wss://fusheng.hi-nginx.com/chat');
-//        var ws = new WebSocket('ws://127.0.0.1:9999/');
+    //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
-    ws.onopen = function ()
-    {
-//        var data = {};
-//        data.name = (address);
-//        data.message = ('connected.');
-//        data.room = ($('#myTab li.active a').attr('data-original-title'));
-//        data.time = ((new Date()).toLocaleString());
-//        add_msg(data);
+    ws.onopen = function () {
+        //        var data = {};
+        //        data.name = (address);
+        //        data.message = ('connected.');
+        //        data.room = ($('#myTab li.active a').attr('data-original-title'));
+        //        data.time = ((new Date()).toLocaleString());
+        //        add_msg(data);
         toast.show({
 
             // 'error', 'warning', 'success'
@@ -137,9 +153,8 @@ $(function () {
         $('#submit').removeClass('btn-primary').addClass('btn-success');
     };
 
-    ws.onmessage = function (evt)
-    {
-//            console.log(evt.data);
+    ws.onmessage = function (evt) {
+        //            console.log(evt.data);
         try {
             var msg = JSON.parse(evt.data);
             add_msg(msg);
@@ -160,8 +175,7 @@ $(function () {
         }
     };
 
-    ws.onclose = function (evt)
-    {
+    ws.onclose = function (evt) {
         toast.show({
 
             // 'error', 'warning', 'success'
@@ -179,7 +193,7 @@ $(function () {
     };
 
     ws.onerror = function (evt) {
-//        console.log(evt.data);
+        //        console.log(evt.data);
         toast.show({
 
             // 'error', 'warning', 'success'
@@ -195,7 +209,7 @@ $(function () {
         });
     }
 
-//    var filter_reg = new RegExp('<([a-zA-Z])+.*/?>(.*</([a-zA-Z])+>)?', 'gi');
+    //    var filter_reg = new RegExp('<([a-zA-Z])+.*/?>(.*</([a-zA-Z])+>)?', 'gi');
 
 
     $('#submit').click(function () {
