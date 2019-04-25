@@ -115,13 +115,15 @@ $(function () {
         create_response(data)
 
         // if (ip_geo == null) {
-        //     $.GET('https://api.ip.sb/geoip/' + data.ip, function (ret) {
-        //         ip_geo = ret.country + ret.region + ret.city
-        //         data.ip = ip_geo
-        //         create_response(data)
-        //     }).fail(function () {
-        //         create_response(data)
-        //     })
+            $.GET('https://api.ip.sb/geoip/' + data.ip, function (ret) {
+                ip_geo = ret.country + ret.region + ret.city
+                data.ip = ip_geo
+                console.log(ip_geo)
+                // create_response(data)
+            }).fail(function () {
+                console.log('get ip_geo error')
+                // create_response(data)
+            })
         // } else {
         //     data.ip = ip_geo;
         //     create_response(data)
