@@ -175,7 +175,9 @@ $(function () {
     ws.onmessage = function (evt) {
         //            console.log(evt.data);
         try {
+            console.log(ab2str(evt.data));
             var msg = JSON.parse(ab2str(evt.data));
+            
             add_msg(msg);
         } catch (err) {
             toast.show({
