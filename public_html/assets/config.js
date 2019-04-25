@@ -17,19 +17,6 @@ $(function () {
 
     hljs.initHighlightingOnLoad();
 
-    function ab2str(buf) {
-        return String.fromCharCode.apply(null, new Uint8Array(buf));
-    }
-
-    function str2ab(str) {
-        var buf = new ArrayBuffer(str.length);
-        var bufView = new Uint8Array(buf);
-        for (var i = 0; i < str.length; i++) {
-            bufView[i] = str.charCodeAt(i);
-        }
-        return buf;
-    }
-
     $('#get_file').change(function () {
         var upload_form = $('#upload_form');
         var options = {
@@ -175,8 +162,7 @@ $(function () {
     ws.onmessage = function (evt) {
         //            console.log(evt.data);
         try {
-            console.log(ab2str(evt.data));
-            var msg = JSON.parse(ab2str(evt.data));
+            var msg = JSON.parse((evt.data));
             
             add_msg(msg);
         } catch (err) {
@@ -187,7 +173,7 @@ $(function () {
                 type: 'error',
 
                 // toast message
-                text: 'recv error.'+err.message,
+                text: err.message,
 
                 // default: 3000
                 time: 3000 // 5 seconds
@@ -262,7 +248,7 @@ $(function () {
             data.room = ($('#myTab li.active a').attr('data-original-title'));
             data.time = ((new Date()).toLocaleString());
 
-            ws.send(str2ab(JSON.stringify(data)));
+            ws.send((JSON.stringify(data)));
             quill.setText('');
         } else {
             toast.show({
