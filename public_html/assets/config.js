@@ -112,22 +112,22 @@ $(function () {
             return;
         }
 
-        create_response(data)
+        //create_response(data)
 
-        // if (ip_geo == null) {
+        if (ip_geo == null) {
             $.get('https://api.ip.sb/geoip/' + data.ip, function (ret) {
                 ip_geo = ret.country + ret.region + ret.city
                 data.ip = ip_geo
-                console.log(ip_geo)
-                // create_response(data)
+                // console.log(ip_geo)
+                create_response(data)
             }).fail(function () {
-                console.log('get ip_geo error')
-                // create_response(data)
+                // console.log('get ip_geo error')
+                create_response(data)
             })
-        // } else {
-        //     data.ip = ip_geo;
-        //     create_response(data)
-        // }
+        } else {
+            data.ip = ip_geo;
+            create_response(data)
+        }
 
 
     }
