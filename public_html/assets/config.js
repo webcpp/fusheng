@@ -17,6 +17,19 @@ $(function () {
 
     hljs.initHighlightingOnLoad();
 
+    function ab2str(buf) {
+        return String.fromCharCode.apply(null, new Uint8Array(buf));
+    }
+
+    function str2ab(str) {
+        var buf = new ArrayBuffer(str.length);
+        var bufView = new Uint8Array(buf);
+        for (var i = 0; i < str.length; i++) {
+            bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
+    }
+
     $('#get_file').change(function () {
         var upload_form = $('#upload_form');
         var options = {
@@ -133,6 +146,7 @@ $(function () {
     }
 
     var ws = new ReconnectingWebSocket('wss://fusheng.hi-nginx.com/chat');
+    ws.binaryType = "arraybuffer";
     //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
     ws.onopen = function () {
@@ -161,7 +175,7 @@ $(function () {
     ws.onmessage = function (evt) {
         //            console.log(evt.data);
         try {
-            var msg = JSON.parse(evt.data);
+            var msg = JSON.parse(ab2str(evt.data));
             add_msg(msg);
         } catch (err) {
             toast.show({
@@ -246,7 +260,7 @@ $(function () {
             data.room = ($('#myTab li.active a').attr('data-original-title'));
             data.time = ((new Date()).toLocaleString());
 
-            ws.send((JSON.stringify(data)));
+            ws.send(str2ab(JSON.stringify(data)));
             quill.setText('');
         } else {
             toast.show({
