@@ -185,7 +185,7 @@ $(function () {
                 type: 'error',
 
                 // toast message
-                text: 'recv error.',
+                text: 'recv error.'+err.message,
 
                 // default: 3000
                 time: 3000 // 5 seconds
