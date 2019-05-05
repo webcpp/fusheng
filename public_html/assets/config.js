@@ -191,7 +191,7 @@ $(function () {
             type: 'success',
 
             // toast message
-            text: 'disconnected',
+            text: 'disconnected:'+evt.message,
 
             // default: 3000
             time: 3000 // 5 seconds
