@@ -133,7 +133,7 @@ $(function () {
 
     }
 
-    var ws = new ReconnectingWebSocket('wss://fusheng.hi-nginx.com/chat');
+    var ws = new ReconnectingWebSocket('wss://fusheng.hi-nginx.com:9090/');
     ws.binaryType = "arraybuffer";
     //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
