@@ -164,8 +164,23 @@ $(function () {
         //            console.log(evt.data);
         try {
             var msg = JSON.parse((evt.data));
-            
-            add_msg(msg);
+            if (msg.error !== undefined) {
+                toast.show({
+
+                    // 'error', 'warning', 'success'
+                    // 'white', 'blue'
+                    type: 'error',
+
+                    // toast message
+                    text: msg.message,
+
+                    // default: 3000
+                    time: 3000 // 5 seconds
+
+                });
+            } else {
+                add_msg(msg);
+            }
         } catch (err) {
             toast.show({
 
