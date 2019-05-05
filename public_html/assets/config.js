@@ -164,6 +164,7 @@ $(function () {
         //            console.log(evt.data);
         try {
             var msg = JSON.parse((evt.data));
+            console.log(evt.data);
             if (msg.error !== undefined) {
                 toast.show({
 
