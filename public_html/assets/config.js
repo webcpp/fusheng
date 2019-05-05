@@ -64,7 +64,7 @@ $(function () {
     function create_response(data) {
         var p = 'left';
         var msg = $('<div class="text-' + p + ' fusheng panel panel-default"></div>').append("<div class='panel-body text-justify' style='word-wrap: break-word;' ><p><span>"
-            + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + data.message
+            + data.ip + '/' + data.name + ':' + "</span>" + '</p><br/>' + unescape(data.message)
             + '<p><span class="pull-right">' + (data.time) + '</span></p><br/><p><span class="pull-right">当前在线: ' + (data.u_size) + '</span></p><br/></div>');
 
         msg.find("img").addClass("img-responsive").addClass("img-rounded").addClass('img-thumbnail').css({ 'height': 100, 'width': 100 }).addClass('lightzoom');
@@ -245,7 +245,7 @@ $(function () {
             data.gfilter = [];
             data.ufilter = [];
             data.name = user_name;
-            data.message = str;
+            data.message = escape(str);
             data.room = ($('#myTab li.active a').attr('data-original-title'));
             data.time = ((new Date()).toLocaleString());
 
