@@ -191,12 +191,13 @@ $(function () {
             type: 'success',
 
             // toast message
-            text: 'disconnected:'+evt.message,
+            text: 'disconnected',
 
             // default: 3000
             time: 3000 // 5 seconds
 
         });
+        console.log(evt);
         $('#submit').removeClass('btn-success').addClass('btn-primary');
     };
 
