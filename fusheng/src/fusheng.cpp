@@ -42,7 +42,7 @@ int main(int, char**) {
             server.set_enable_security_check(config["enable_security_check"].bool_value());
 
             if (config["openssl"]["enable"].bool_value()) {
-                if (!server.set_openssl(config["openssl"]["crt"].string_value(), config["openssl"]["crt"].string_value())) {
+                if (!server.set_openssl(config["openssl"]["crt"].string_value(), config["openssl"]["key"].string_value())) {
                     return -1;
                 }
             }
