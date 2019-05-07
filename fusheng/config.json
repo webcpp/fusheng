@@ -1,26 +1,16 @@
 {
-    "host": "127.0.0.1"
-    ,
-    "port": 9999
-    ,
-    "timeout": 5000
-    ,
-    "buffer_size": 204800
-    ,
-    "worker": 1
-    ,
-    "enable_origin_check": true
-    ,
-    "origin": "http://localhost"
-    ,
-    "enbale_blacklist": true
-    ,
-    "max_connection_limit": 1
-    ,
-    "enable_security_check": true
-    ,
-    "max_send_limit": 1
-    ,
+    "host": "127.0.0.1",
+    "port": 9999,
+    "timeout": 5000,
+    "buffer_size": 204800,
+    "thread_size": 10,
+    "worker": 1,
+    "enable_origin_check": true,
+    "origin": "http://localhost",
+    "enbale_blacklist": true,
+    "max_connection_limit": 1,
+    "enable_security_check": true,
+    "max_send_limit": 1,
     "openssl": {
         "enable": false,
         "crt": "",

@@ -1,15 +1,15 @@
-#include <mongols/ws_server.hpp>
-#include <mongols/util.hpp>
-#include <mongols/lib/json11.hpp>
-#include <unistd.h>
 #include <fstream>
+#include <mongols/lib/json11.hpp>
+#include <mongols/util.hpp>
+#include <mongols/ws_server.hpp>
 #include <thread>
+#include <unistd.h>
 
+#define PID_FILE "fusheng.pid"
+#define CONFIG_FILE "config.json"
 
-#define PID_FILE                "fusheng.pid"
-#define CONFIG_FILE             "config.json"
-
-int main(int, char**) {
+int main(int, char**)
+{
     daemon(1, 0);
     std::string line, config_json, err;
     std::ifstream f(CONFIG_FILE);
@@ -33,8 +33,7 @@ int main(int, char**) {
             mongols::tcp_server::max_connection_limit = config["max_connection_limit"].int_value();
             mongols::tcp_server::max_send_limit = config["max_send_limit"].int_value();
 
-
-            mongols::ws_server server(host, port, timeout, buffer_size, std::thread::hardware_concurrency());
+            mongols::ws_server server(host, port, timeout, buffer_size, config["thread_size"].int_value());
 
             server.set_enable_blacklist(config["enable_blacklist"].bool_value());
             server.set_enable_origin_check(config["enable_origin_check"].bool_value());
@@ -51,11 +50,11 @@ int main(int, char**) {
                 pid_file << getpid();
             }
 
-            std::function<void(pthread_mutex_t*, size_t*) > ff = [&](pthread_mutex_t* mtx, size_t * data) {
+            std::function<void(pthread_mutex_t*, size_t*)> ff = [&](pthread_mutex_t* mtx, size_t* data) {
                 server.run();
             };
 
-            std::function<bool(int) > g = [&](int status) {
+            std::function<bool(int)> g = [&](int status) {
                 //                std::cout << strsignal(WTERMSIG(status)) << std::endl;
                 return false;
             };
@@ -63,9 +62,7 @@ int main(int, char**) {
             mongols::multi_process main_process;
             main_process.run(ff, g, config["worker"].int_value());
 
-
             remove(PID_FILE);
         }
     }
 }
-
