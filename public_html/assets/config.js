@@ -14,7 +14,7 @@ $(function () {
     toolbar.addHandler('image', function (e) {
         document.getElementById('get_file').click();
     });
-
+    var old_content = null;
     hljs.initHighlightingOnLoad();
 
     $('#get_file').change(function () {
@@ -214,6 +214,9 @@ $(function () {
         });
         console.log(evt);
         $('#submit').removeClass('btn-success').addClass('btn-primary');
+        if (old_content !== null) {
+            quill.setText(old_content);
+        }
     };
 
     ws.onerror = function (evt) {
@@ -266,6 +269,7 @@ $(function () {
             data.time = ((new Date()).toLocaleString());
 
             ws.send((JSON.stringify(data)));
+            old_content = str;
             quill.setText('');
         } else {
             toast.show({
