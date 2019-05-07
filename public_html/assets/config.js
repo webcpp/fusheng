@@ -215,7 +215,7 @@ $(function () {
         console.log(evt);
         $('#submit').removeClass('btn-success').addClass('btn-primary');
         if (old_content !== null) {
-            quill.setText(old_content);
+            quill.root.innerHTML = old_content;
         }
     };
 
