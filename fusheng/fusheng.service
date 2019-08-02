@@ -9,7 +9,7 @@ Type=forking
 PIDFile=/usr/local/fusheng/fusheng.pid
 
 ExecStart=/usr/local/fusheng/fusheng
-
+ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
 #Restart=on-failure
