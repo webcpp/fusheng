@@ -4,7 +4,6 @@
     "timeout": 5000,
     "buffer_size": 204800,
     "thread_size": 10,
-    "worker": 1,
     "enable_origin_check": true,
     "origin": "http://localhost",
     "enbale_blacklist": true,

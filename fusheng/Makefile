@@ -21,7 +21,7 @@ CXXFLAGS+=`pkg-config --cflags mongols openssl`
 LDLIBS+=`pkg-config --libs mongols openssl`
 
 ifndef INSTALL_DIR
-INSTALL_DIR=/usr/local/fusheng
+INSTALL_DIR=/usr/local/$(PROJECT)
 endif
 
 
