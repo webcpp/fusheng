@@ -64,8 +64,6 @@ int main(int, char**)
 
         mongols::multi_process main_process;
         main_process.run(ff, g);
-
-        remove(PID_FILE);
     }
     return 0;
 }

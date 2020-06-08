@@ -50,7 +50,8 @@ clean:
 install:
 	test -d $(INSTALL_DIR)/ || mkdir -p $(INSTALL_DIR)/
 	install $(PROJECT) $(INSTALL_DIR)
-	cp fusheng.service /etc/systemd/system
+	rm -f /etc/init.d/fusheng.sh 
+	ln -s $(INSTALL_DIR)/fusheng-ctl.sh /etc/init.d/fusheng.sh
 	cp config.json $(INSTALL_DIR)
 	install upload.py $(INSTALL_DIR)
 
