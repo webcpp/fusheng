@@ -51,11 +51,11 @@ install:
 	test -d $(INSTALL_DIR)/ || mkdir -p $(INSTALL_DIR)/
 	install $(PROJECT) $(INSTALL_DIR)
 	install fusheng-ctl.sh $(INSTALL_DIR)
-	rm -f /etc/init.d/fusheng.sh 
-	ln -s $(INSTALL_DIR)/fusheng-ctl.sh /etc/profile.d/fusheng.sh
+	install fusheng.service /etc/systemd/system/
+	systemctl daemon-reload
 	cp config.json $(INSTALL_DIR)
 	install upload.py $(INSTALL_DIR)
 
 uninstall:
-	rm -rf $(INSTALL_DIR)/fusheng-ctl.sh /etc/profile.d/fusheng.sh $(INSTALL_DIR)
+	rm -rf $(INSTALL_DIR)
 

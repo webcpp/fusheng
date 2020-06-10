@@ -1,0 +1,25 @@
+
+[Unit]
+Description=The fusheng server
+After=network.target
+Wants=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/usr/local/fusheng
+Type=forking
+PIDFile=/usr/local/fusheng/fusheng.pid
+ExecStart=/usr/local/fusheng/fusheng
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+
+LimitNOFILE=1024000
+
+
+PrivateTmp=true
+#restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
