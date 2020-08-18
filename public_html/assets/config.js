@@ -9,7 +9,7 @@ $(function () {
         },
         placeholder: 'The best brower is Chrome.',
         theme: 'snow',
-    }); 
+    });
     var toolbar = quill.getModule('toolbar');
     toolbar.addHandler('image', function (e) {
         document.getElementById('get_file').click();
