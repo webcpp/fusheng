@@ -7,7 +7,7 @@ $(function () {
             syntax: true,
             toolbar: '#toolbar-container'
         },
-        placeholder: 'To be a good man! The best brower is Chrome.',
+        placeholder: 'The best brower is Chrome.',
         theme: 'snow',
     });
     var toolbar = quill.getModule('toolbar');
