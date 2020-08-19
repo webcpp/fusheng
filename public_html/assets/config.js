@@ -38,7 +38,7 @@ $(function () {
                         text: 'upload error',
 
                         // default: 3000
-                        time: 3000 // 5 seconds
+                        time: 2000 
 
                     });
                 }
@@ -82,8 +82,7 @@ $(function () {
             $(block).addClass('pre-scrollable')
             hljs.highlightBlock(block);
         });
-        //        hljs.initHighlighting.called = false;
-        //        hljs.initHighlighting();
+
 
         var cur_id = $('#myTab li.active a').attr('data-original-title');
         if (cur_id != id) {
@@ -97,7 +96,7 @@ $(function () {
                 text: id + '有新消息',
 
                 // default: 3000
-                time: 500 // 5 seconds
+                time: 500 
 
             });
         }
@@ -112,18 +111,12 @@ $(function () {
             return;
         }
 
-        //create_response(data)
-
         if (ip_geo == null) {
             create_response(data);
             $.get('https://api.ip.sb/geoip/' + data.ip, function (ret) {
                 ip_geo = ret.country + ret.region + ret.city
                 data.ip = ip_geo
-                // console.log(ip_geo)
-                // create_response(data)
             }).fail(function () {
-                // console.log('get ip_geo error')
-                // create_response(data)
             })
         } else {
             data.ip = ip_geo;
@@ -138,12 +131,6 @@ $(function () {
     //        var ws = new WebSocket('ws://127.0.0.1:9999/');
 
     ws.onopen = function () {
-        //        var data = {};
-        //        data.name = (address);
-        //        data.message = ('connected.');
-        //        data.room = ($('#myTab li.active a').attr('data-original-title'));
-        //        data.time = ((new Date()).toLocaleString());
-        //        add_msg(data);
         toast.show({
 
             // 'error', 'warning', 'success'
@@ -154,7 +141,7 @@ $(function () {
             text: 'connected.',
 
             // default: 3000
-            time: 3000 // 5 seconds
+            time: 2000 
 
         });
         $('#submit').removeClass('btn-primary').addClass('btn-success');
@@ -175,7 +162,7 @@ $(function () {
                     text: msg.message,
 
                     // default: 3000
-                    time: 3000 // 5 seconds
+                    time: 2000 
 
                 });
             } else {
@@ -192,7 +179,7 @@ $(function () {
                 text: err.message,
 
                 // default: 3000
-                time: 3000 // 5 seconds
+                time: 2000 
 
             });
         }
@@ -231,16 +218,14 @@ $(function () {
             text: 'some errro happend.',
 
             // default: 3000
-            time: 3000 // 5 seconds
+            time: 2000 
 
         });
     }
 
-    //    var filter_reg = new RegExp('<([a-zA-Z])+.*/?>(.*</([a-zA-Z])+>)?', 'gi');
 
 
     $('#submit').click(function () {
-        //var str = filterXSS(quill.root.innerHTML);
         var str = quill.root.innerHTML;
         var length = quill.getLength();
         if (length > 5000) {
