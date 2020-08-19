@@ -161,7 +161,7 @@ $(function () {
     };
 
     ws.onmessage = function (evt) {
-        console.log(evt.data);
+        //console.log(evt.data);
         try {
             var msg = JSON.parse((evt.data));
             if (msg.error !== undefined) {
